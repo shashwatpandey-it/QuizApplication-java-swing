@@ -170,7 +170,7 @@ class QuizPage extends JFrame {
 		else {
 			incorrect++;
 		}
-		System.out.println("correct: " + correct + " incorrect: " + incorrect);
+		//System.out.println("correct: " + correct + " incorrect: " + incorrect);
 		
 	}
 	
