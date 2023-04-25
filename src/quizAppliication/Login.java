@@ -28,7 +28,7 @@ public class Login extends JFrame{
 	public Login(){
 		super.setDefaultCloseOperation(JFrame.EXIT_ON_CLOSE); 
 		super.getContentPane().setBackground(Color.WHITE);
-		super.setIconImage(new ImageIcon(System.getProperty("user.dir") + "/src/quizAppliication/images/Icon.png").getImage());
+		super.setIconImage(new ImageIcon(getClass().getResource("/Icon.png")).getImage());
 		super.setLayout(null);
 		super.setLocation(250,80);
 		super.setSize(1000,600);
@@ -44,7 +44,7 @@ public class Login extends JFrame{
 		
 		//image handling
 		loginImage = new JLabel();
-		loginImage.setIcon(new ImageIcon(System.getProperty("user.dir") + "/src/quizAppliication/images/Logo.png"));
+		loginImage.setIcon(new ImageIcon(getClass().getResource("/Logo.png")));
 		loginImage.setBounds(0,0,600,600);
 		
 		//text handling
