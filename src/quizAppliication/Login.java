@@ -3,6 +3,8 @@ package quizAppliication;
 import java.awt.Color;
 import java.awt.Cursor;
 import java.awt.Font;
+import java.net.URL;
+
 import javax.swing.BorderFactory;
 import javax.swing.ImageIcon;
 import javax.swing.JButton;
@@ -24,7 +26,7 @@ public class Login extends JFrame{
 	public Login(){
 		super.setDefaultCloseOperation(JFrame.EXIT_ON_CLOSE); 
 		super.getContentPane().setBackground(Color.WHITE);
-		super.setIconImage(new ImageIcon("icon.png").getImage());
+		super.setIconImage(new ImageIcon("resources/icon.png").getImage());
 		super.setLayout(null);
 		super.setLocation(250,80);
 		super.setSize(1000,600);
@@ -40,7 +42,7 @@ public class Login extends JFrame{
 		
 		//image handling
 		loginImage = new JLabel();
-		loginImage.setIcon(new ImageIcon("logo.png"));
+		loginImage.setIcon(new ImageIcon("resources/logo.png"));
 		loginImage.setBounds(0,0,600,600);
 		
 		//text handling

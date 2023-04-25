@@ -225,7 +225,7 @@ class QuizPage extends JFrame {
 
 		//handling quizLabel
 		quizLabel = new JLabel();
-		quizLabel.setIcon(new ImageIcon("quiz.png"));
+		quizLabel.setIcon(new ImageIcon("resources/quiz.png"));
 		quizLabel.setBounds(0,0,600,600);
 		
 		//handling questionNumber 
