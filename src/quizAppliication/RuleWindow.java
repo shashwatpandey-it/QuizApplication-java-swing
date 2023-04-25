@@ -27,7 +27,7 @@ class RuleWindow extends JFrame {
 		loginrReference.dispose();;
 		super.setDefaultCloseOperation(JFrame.EXIT_ON_CLOSE);
 		super.getContentPane().setBackground(Color.WHITE);
-		super.setIconImage(new ImageIcon("icon.png").getImage());
+		super.setIconImage(new ImageIcon(getClass().getResource("/Icon.png")).getImage());
 		super.setLayout(null);
 		super.setLocation(300,120);
 		super.setSize(1000,500);

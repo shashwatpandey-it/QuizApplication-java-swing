@@ -57,7 +57,7 @@ class QuizPage extends JFrame {
 		ruleWindowReference.dispose();;
 		super.setDefaultCloseOperation(JFrame.EXIT_ON_CLOSE);
 		super.getContentPane().setBackground(Color.WHITE);
-		super.setIconImage(new ImageIcon("icon.png").getImage());
+		super.setIconImage(new ImageIcon(getClass().getResource("/Icon.png")).getImage());
 		super.setLayout(null);
 		super.setLocation(50,30);
 		super.setSize(1440,650);
