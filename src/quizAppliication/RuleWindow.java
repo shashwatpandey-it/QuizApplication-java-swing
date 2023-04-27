@@ -15,6 +15,7 @@ class RuleWindow extends JFrame {
 	
 	//Reference Variables
 	private String playerName;
+	private String quizTopic;
 	private JLabel welcomeLabel, ruleLabel;
 	private Font font;
 	private JCheckBox checkBox;
@@ -22,8 +23,9 @@ class RuleWindow extends JFrame {
 	private boolean agreed;
 	
 	//constructor
-	public RuleWindow(Login loginrReference, String playerName) {
+	public RuleWindow(Login loginrReference, String playerName, String quizTopic) {
 		this.playerName = playerName;
+		this.quizTopic = quizTopic;
 		loginrReference.dispose();;
 		super.setDefaultCloseOperation(JFrame.EXIT_ON_CLOSE);
 		super.getContentPane().setBackground(Color.WHITE);
@@ -83,7 +85,7 @@ class RuleWindow extends JFrame {
 		continueButton.setBorder(BorderFactory.createLineBorder(new Color(248,0,78),4,true));
 		continueButton.setBounds(400,375,200,50);
 		continueButton.addActionListener(event -> {if(agreed) {
-														new QuizPage(this, playerName);
+														new QuizPage(this, playerName, quizTopic);
 													}else {
 														JOptionPane.showMessageDialog(this,"Have you not read the rules!","Warning",JOptionPane.WARNING_MESSAGE);
 													}

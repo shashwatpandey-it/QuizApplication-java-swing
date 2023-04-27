@@ -43,17 +43,21 @@ class QuizPage extends JFrame {
 	private HttpClient client;
 	private HttpResponse<String> response;
 	private QuizCard[] cardList;
+	private Questionnaire questionnaire;
 	private String playerName;
+	private String quizTopic;
 	private int optionNumber = 0;
 	private int pressed = 0;
 	private int currentCard = 0;
 	private int correct = 0;
 	private int incorrect = 0;
 	private int timer = 20;
+	private URI uri;
 	
 	//constructor
-	public QuizPage(RuleWindow ruleWindowReference, String playerName) {
+	public QuizPage(RuleWindow ruleWindowReference, String playerName, String quizTopic) {
 		this.playerName = playerName;
+		this.quizTopic = quizTopic;
 		ruleWindowReference.dispose();;
 		super.setDefaultCloseOperation(JFrame.EXIT_ON_CLOSE);
 		super.getContentPane().setBackground(Color.WHITE);
@@ -63,7 +67,12 @@ class QuizPage extends JFrame {
 		super.setSize(1440,650);
 		super.setResizable(false);
 		
-		this.fetchQuestions();
+		try {
+			this.fetchQuestions();
+		} catch (URISyntaxException e) {
+			// TODO Auto-generated catch block
+			e.printStackTrace();
+		}
 		
 		this.prepareGUI();
 		
@@ -73,12 +82,45 @@ class QuizPage extends JFrame {
 		
 	}
 	
-	private void fetchQuestions() {
+	private void fetchQuestions() throws URISyntaxException {
+		
+		switch (quizTopic) {
+		case "General Knowledge":
+			uri = new URI("https://opentdb.com/api.php?amount=10&category=9&type=multiple");
+			break;
+		
+		case "Science and Nature":
+			uri = new URI("https://opentdb.com/api.php?amount=10&category=17&type=multiple");
+			break;
+		
+		case "Sports":
+			uri = new URI("https://opentdb.com/api.php?amount=10&category=21&type=multiple");
+			break;
+			
+		case "Geography":
+			uri = new URI("https://opentdb.com/api.php?amount=10&category=22&type=multiple");
+			break;
+			
+		case "History":
+			uri = new URI("https://opentdb.com/api.php?amount=10&category=23&type=multiple");
+			break;
+			
+		case "Politics":
+			uri = new URI("https://opentdb.com/api.php?amount=10&category=24&type=multiple");
+			break;
+			
+		case "Vehicles":
+			uri = new URI("https://opentdb.com/api.php?amount=10&category=28&type=multiple");
+			break;
+			
+		default:
+			break;
+		}
 		
 		try {
 			//handling request
 			request = HttpRequest.newBuilder()
-								.uri(new URI("https://the-trivia-api.com/api/questions?limit=10&region=IN&difficulty=medium"))
+								.uri(uri)
 								.GET()
 								.build();
 			//client container
@@ -86,9 +128,8 @@ class QuizPage extends JFrame {
 			//handling incoming response
 			response = client.send(request,HttpResponse.BodyHandlers.ofString());
 			//converting JSON to java object for useful application building
-			cardList = new Gson().fromJson(response.body(),QuizCard[].class);
-		} catch (URISyntaxException e) {
-			e.printStackTrace();
+			questionnaire = new Gson().fromJson(response.body(),Questionnaire.class);
+			cardList = questionnaire.getResults();
 		} catch (IOException e) {
 			e.printStackTrace();
 		} catch (InterruptedException e) {
@@ -125,14 +166,14 @@ class QuizPage extends JFrame {
 			
 			//creating options array
 			for(int i = 0, j = 0; i < 3; i++, j++) {
-				options[i] = ("<html>" + cardList[currentCard].getIncorrectAnswers()[j] + "</html>");
+				options[i] = ("<html>" + cardList[currentCard].getIncorrect_answers()[j] + "</html>");
 			}
 			if(options[optionNumber] == null) {
-				options[optionNumber] = ("<html>" + cardList[currentCard].getCorrectAnswer() + "</html>");
+				options[optionNumber] = ("<html>" + cardList[currentCard].getCorrect_answer() + "</html>");
 			}
 			else {
 				String tempString = options[optionNumber];
-				options[optionNumber] = ("<html>" + cardList[currentCard].getCorrectAnswer() + "</html>");
+				options[optionNumber] = ("<html>" + cardList[currentCard].getCorrect_answer() + "</html>");
 				options[3] = tempString;
 			}
 			
@@ -164,7 +205,7 @@ class QuizPage extends JFrame {
 		if(buttonGroup.getSelection() == null) {
 			incorrect++;
 		}
-		else if((buttonGroup.getSelection().getActionCommand()).equals("<html>" + cardList[currentCard-1].getCorrectAnswer() + "</html>")) {
+		else if((buttonGroup.getSelection().getActionCommand()).equals("<html>" + cardList[currentCard-1].getCorrect_answer() + "</html>")) {
 			correct++;
 		}
 		else {

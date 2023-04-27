@@ -3,13 +3,12 @@ package quizAppliication;
 import java.awt.Color;
 import java.awt.Cursor;
 import java.awt.Font;
-import java.awt.Image;
-import java.awt.Toolkit;
-import java.net.URL;
+import java.awt.Insets;
 
 import javax.swing.BorderFactory;
 import javax.swing.ImageIcon;
 import javax.swing.JButton;
+import javax.swing.JComboBox;
 import javax.swing.JFrame;
 import javax.swing.JLabel;
 import javax.swing.JOptionPane;
@@ -21,6 +20,8 @@ public class Login extends JFrame{
 	private JLabel loginImage;
 	private JLabel nameLabel;
 	private JTextField nameField;
+	private JLabel typeLabel;
+	private ComboBox<String> box;
 	private JButton startButton;
 	private Font font;
 	
@@ -40,6 +41,7 @@ public class Login extends JFrame{
 		super.setVisible(true);
 	}
 	
+	@SuppressWarnings("unchecked")
 	private void prepareGUI() {
 		
 		//image handling
@@ -50,19 +52,42 @@ public class Login extends JFrame{
 		//text handling
 		font = new Font("Verdana", Font.BOLD,26);
 		nameLabel = new JLabel("Player Name");
-		nameLabel.setHorizontalAlignment(JLabel.CENTER);
+		nameLabel.setHorizontalAlignment(JLabel.LEADING);
 		nameLabel.setFont(font);
 		nameLabel.setForeground(new Color(248,0,78));
-		nameLabel.setBounds(550,150,400,50);
+		nameLabel.setBounds(550,100,400,50);
 		
 		//text field handling
 		nameField = new JTextField();
 		nameField.setFont(new Font("Verdana",Font.PLAIN,20));
-		nameField.setBorder(BorderFactory.createLineBorder(Color.GRAY,2));
-		nameField.setHorizontalAlignment(JTextField.CENTER);
+		nameField.setBorder(BorderFactory.createLineBorder(Color.BLACK,2));
 		nameField.setForeground(Color.DARK_GRAY);
 		nameField.setBackground(new Color(255,238,212));
-		nameField.setBounds(550,210,400,40);
+		nameField.setBounds(550,160,400,40);
+		
+		//type label handling
+		font = new Font("Verdana", Font.BOLD,26);
+		typeLabel = new JLabel("Quiz Topic");
+		typeLabel.setHorizontalAlignment(JLabel.LEADING);
+		typeLabel.setFont(font);
+		typeLabel.setForeground(new Color(248,0,78));
+		typeLabel.setBounds(550,220,400,50);
+		
+		//box field handling
+		String[] types = {"General Knowledge", "Science and Nature", "Sports", "Geography", "History", "Politics", "Vehicles"};
+ 		box = new ComboBox<String>();
+ 		for(String type : types) {
+ 			box.addItem(type);
+ 		}
+ 		box.setFont(new Font("Verdana",Font.PLAIN,20));
+ 		box.setBorder(BorderFactory.createLineBorder(Color.BLACK,2));
+ 		box.setEditable(false);
+ 		box.setFocusable(false);
+ 		box.setMaximumRowCount(3);
+ 		box.setForeground(Color.DARK_GRAY);
+ 		box.setBackground(new Color(255,238,212));
+ 		box.setBounds(550,280,400,40);
+ 		
 		
 		//button handling
 		startButton = new JButton("START");
@@ -72,11 +97,11 @@ public class Login extends JFrame{
 		startButton.setFocusable(false);
 		startButton.setCursor(new Cursor(Cursor.HAND_CURSOR));
 		startButton.setBorder(BorderFactory.createLineBorder(new Color(248,0,78),4,true));
-		startButton.setBounds(650,325,205,50);
+		startButton.setBounds(650,380,205,50);
 		startButton.addActionListener(event -> { if(nameField.getText().isEmpty()) {
 			 										 JOptionPane.showMessageDialog(this,"Player name required!","Warning",JOptionPane.WARNING_MESSAGE);
 												 }else {
-													 new RuleWindow(this, nameField.getText());
+													 new RuleWindow(this, nameField.getText(), String.valueOf(box.getSelectedItem()));
 												 }
 		});
 		
@@ -84,6 +109,8 @@ public class Login extends JFrame{
 		this.getContentPane().add(loginImage);
 		this.getContentPane().add(nameField);
 		this.getContentPane().add(nameLabel);
+		this.getContentPane().add(typeLabel);
+		this.getContentPane().add(box);
 	
 		
 		
