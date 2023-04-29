@@ -13,6 +13,7 @@ import javax.swing.JFrame;
 import javax.swing.JLabel;
 import javax.swing.JOptionPane;
 import javax.swing.JTextField;
+import javax.swing.SwingUtilities;
 
 public class Login extends JFrame{
 	
@@ -119,6 +120,14 @@ public class Login extends JFrame{
 
 	public static void main(String[] args) {
 		System.setProperty("sun.java2d.uiScale", "1.0");
-		new Login();
+		SwingUtilities.invokeLater(new Runnable() {
+			
+			@Override
+			public void run() {
+				// TODO Auto-generated method stub
+				new Login();
+
+			}
+		});
 	}
 }
