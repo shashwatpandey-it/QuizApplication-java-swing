@@ -23,13 +23,13 @@ To install and run the Quiz Application, follow these steps:
 
 # Application Preview
 
-![Alt text](preview/login-page1.png)
+![login-page1](https://github.com/shashwat9470/QuizApplication-java-swing/assets/56164713/77fd22c7-2ecc-4de6-b954-fb4896085910)
 
-![Alt text](preview/login-page2.png)
+![login-page2](https://github.com/shashwat9470/QuizApplication-java-swing/assets/56164713/79c5b98f-1cca-4cac-a85f-d7704460783a)
 
-![Alt text](preview/quiz-page1.png)
+![quiz-page1](https://github.com/shashwat9470/QuizApplication-java-swing/assets/56164713/d49514ef-c587-4865-ac2a-3199c0e2d7bd)
 
-![Alt text](preview/quiz-page2.png)
+![quiz-page2](https://github.com/shashwat9470/QuizApplication-java-swing/assets/56164713/f85a67b1-3c5b-46b9-a097-7c1965705267)
 
 # Contributing
 If you want to contribute to the Quiz Application, follow these steps:
