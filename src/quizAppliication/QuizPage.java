@@ -4,8 +4,10 @@ import com.google.gson.Gson;
 
 import java.awt.Color;
 import java.awt.Cursor;
+import java.awt.Dimension;
 import java.awt.Font;
 import java.awt.Graphics;
+import java.awt.Toolkit;
 import java.io.IOException;
 import java.net.URI;
 import java.net.URISyntaxException;
@@ -63,8 +65,11 @@ class QuizPage extends JFrame {
 		super.getContentPane().setBackground(Color.WHITE);
 		super.setIconImage(new ImageIcon(getClass().getResource("/Icon.png")).getImage());
 		super.setLayout(null);
-		super.setLocation(50,30);
 		super.setSize(1440,650);
+		Dimension screenSize = Toolkit.getDefaultToolkit().getScreenSize();
+		int centerX = (screenSize.width - super.getWidth())/2;
+		int centerY = (screenSize.height - super.getHeight())/2;
+		super.setLocation(centerX,centerY);
 		super.setResizable(false);
 		
 		try {

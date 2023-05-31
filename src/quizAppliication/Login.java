@@ -2,8 +2,10 @@ package quizAppliication;
 
 import java.awt.Color;
 import java.awt.Cursor;
+import java.awt.Dimension;
 import java.awt.Font;
 import java.awt.Insets;
+import java.awt.Toolkit;
 
 import javax.swing.BorderFactory;
 import javax.swing.ImageIcon;
@@ -32,8 +34,11 @@ public class Login extends JFrame{
 		super.getContentPane().setBackground(Color.WHITE);
 		super.setIconImage(new ImageIcon(getClass().getResource("/Icon.png")).getImage());
 		super.setLayout(null);
-		super.setLocation(250,80);
 		super.setSize(1000,600);
+		Dimension screenSize = Toolkit.getDefaultToolkit().getScreenSize();
+		int centerX = (screenSize.width - super.getWidth())/2;
+		int centerY = (screenSize.height - super.getHeight())/2;
+		super.setLocation(centerX,centerY);
 		super.setResizable(false);
 		
 		
